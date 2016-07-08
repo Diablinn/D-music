@@ -2,10 +2,14 @@
 #include <gtk/gtk.h>
 
 #include "interface.h"
+#include "gestion_liste.h"
 
 int main(int argc,char **argv)
 {
     GtkWidget* p_Window;
+    GtkWidget* p_frameSong;
+
+    GList *list_music = NULL;
 
     gtk_init(&argc,&argv);
 
@@ -19,7 +23,10 @@ int main(int argc,char **argv)
 	g_signal_connect(G_OBJECT(p_Window), "destroy", G_CALLBACK(gtk_main_quit), NULL);
 
     //Creation of the interface :
-    create_interface(p_Window);
+    p_frameSong = create_interface(p_Window);
+
+    //Creation of the list of Music :
+    create_musicList(p_frameSong, list_music);
 
     //Show the window
     gtk_widget_show_all(p_Window);
